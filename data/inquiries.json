@@ -1,0 +1,53 @@
+[
+  {
+    "id": "01f7b120-1fae-4a58-a0f1-1aedb39d7ed4",
+    "intent": "consult",
+    "company": "누리",
+    "contactName": "이금용",
+    "phone": "01024325446",
+    "email": "lky22225@gmail.com",
+    "industry": "1",
+    "headcount": "1",
+    "standards": [
+      "ISO 9001"
+    ],
+    "targetDate": "일주일",
+    "body": "ㄱㄷㄴㅅ",
+    "createdAt": "2026-04-17T07:03:15.106Z",
+    "readAt": null
+  },
+  {
+    "id": "01eadac6-d3e7-4e14-9c04-beb63d3ae328",
+    "intent": "quote",
+    "company": "누리",
+    "contactName": "KEUM YONG LEE",
+    "phone": "01024325446",
+    "email": "lky22225@gmail.com",
+    "industry": "2",
+    "headcount": "2",
+    "standards": [
+      "ISO 14001"
+    ],
+    "targetDate": "일주일",
+    "body": "fdsdfa",
+    "createdAt": "2026-04-17T07:04:14.028Z",
+    "readAt": null
+  },
+  {
+    "id": "a5d45031-7713-4caf-b25d-aa161e49825b",
+    "intent": "consult",
+    "company": "누리",
+    "contactName": "KeumYong, Lee",
+    "phone": "01024325446",
+    "email": "lky22225@gmail.com",
+    "industry": "3",
+    "headcount": "3",
+    "standards": [
+      "ISO 45001"
+    ],
+    "targetDate": "3",
+    "body": "12312",
+    "createdAt": "2026-04-17T07:50:18.559Z",
+    "readAt": "2026-04-17T07:50:54.791Z"
+  }
+]

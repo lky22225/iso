@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --section-y: 5rem;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-y: 2.5rem;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-bg-primary text-ink-primary antialiased;
+}
