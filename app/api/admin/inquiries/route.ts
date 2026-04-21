@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { readInquiries, updateInquiryReadAt } from "@/lib/inquiries";
 
-const ADMIN_PASSWORD = "iso_admin";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "iso_admin";
 
 function isAuthorized(req: Request) {
   const password = req.headers.get("x-admin-password");
