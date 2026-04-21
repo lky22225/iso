@@ -27,12 +27,11 @@ export default function ProcessPage() {
             </div>
             <div className="mx-auto w-full max-w-[900px] overflow-hidden rounded-2xl ring-1 ring-black/5">
               <Image
-                src="/api/process-image?v=process-10steps"
+                src="/images/process-10steps.png"
                 alt="한눈에 보는 인증 취득 및 유지 10단계 프로세스"
                 width={1400}
                 height={780}
                 className="h-auto w-full"
-                unoptimized
                 priority
               />
             </div>
