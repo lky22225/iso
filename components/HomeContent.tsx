@@ -176,16 +176,40 @@ export function HomeContent() {
         <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 text-center sm:grid-cols-3">
             <div>
-              <p className="text-3xl font-bold text-accent">KAB</p>
-              <p className="mt-1 text-sm text-ink-secondary">인정 기반 인증심사</p>
+              <div className="mx-auto flex h-20 w-full max-w-[220px] items-center justify-center rounded-xl bg-white p-2 ring-1 ring-black/5">
+                <Image
+                  src="/images/iaf-logo.png"
+                  alt="IAF 로고"
+                  width={180}
+                  height={72}
+                  className="h-auto w-auto max-h-16 object-contain"
+                />
+              </div>
+              <p className="mt-2 text-sm text-ink-secondary">IAF 적합성 평가 기준 준수</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-ink-primary">Global Exemplar</p>
-              <p className="mt-1 text-sm text-ink-secondary">호주 인정 평가원</p>
+              <div className="mx-auto flex h-20 w-full max-w-[220px] items-center justify-center rounded-xl bg-white p-2 ring-1 ring-black/5">
+                <Image
+                  src="/images/kab-logo.png"
+                  alt="KAB 로고"
+                  width={180}
+                  height={72}
+                  className="h-auto w-auto max-h-16 object-contain"
+                />
+              </div>
+              <p className="mt-2 text-sm text-ink-secondary">KAB 인정 기반 인증심사</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-ink-primary">98%</p>
-              <p className="mt-1 text-sm text-ink-secondary">고객 만족도(예시)</p>
+              <div className="mx-auto flex h-20 w-full max-w-[220px] items-center justify-center rounded-xl bg-white p-2 ring-1 ring-black/5">
+                <Image
+                  src="/images/exemplar-global-logo.png"
+                  alt="Exemplar Global 로고"
+                  width={180}
+                  height={72}
+                  className="h-auto w-auto max-h-16 object-contain"
+                />
+              </div>
+              <p className="mt-2 text-sm text-ink-secondary">Exemplar Global 인정 평가원</p>
             </div>
           </div>
           <p className="mx-auto mt-8 max-w-3xl text-center text-sm leading-relaxed text-ink-secondary">

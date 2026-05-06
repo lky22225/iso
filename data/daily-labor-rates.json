@@ -1,0 +1,13 @@
+{
+  "currency": "KRW",
+  "unitLabel": "원/MD",
+  "description": "규격별 일일 노임단가",
+  "rates": [
+    { "standard": "ISO 9001", "code": "iso9001", "dailyRate": 600000 },
+    { "standard": "ISO 14001", "code": "iso14001", "dailyRate": 600000 },
+    { "standard": "ISO 45001", "code": "iso45001", "dailyRate": 800000 },
+    { "standard": "ISO 27001", "code": "iso27001", "dailyRate": 800000 },
+    { "standard": "ISO 27701", "code": "iso27701", "dailyRate": 800000 },
+    { "standard": "ISO 42001", "code": "iso42001", "dailyRate": 1000000 }
+  ]
+}

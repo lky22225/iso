@@ -53,9 +53,6 @@ export function Footer() {
                   FAQ
                 </Link>
               </li>
-              <li>
-                <span className="text-white/60">이의제기·불만: lky22225@gmail.com</span>
-              </li>
             </ul>
           </div>
           <div>
@@ -70,9 +67,6 @@ export function Footer() {
               msg: 010-2432-5446
               <br />
               Email: lky22225@gmail.com
-            </p>
-            <p className="mt-4 text-xs text-white/50">
-              사업자등록번호 000-00-00000
             </p>
           </div>
         </div>

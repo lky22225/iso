@@ -51,6 +51,14 @@ export default function ProcessPage() {
               >
                 준비서류체크리스트
               </Link>
+              <a
+                href="/videos/iso-process-overview.mp4"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-accent/20 bg-white px-6 py-3 text-sm font-semibold text-accent transition hover:bg-accent/5"
+              >
+                인증절차진행동영상보기
+              </a>
             </div>
           </section>
         </div>

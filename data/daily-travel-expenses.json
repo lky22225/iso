@@ -1,0 +1,13 @@
+{
+  "currency": "KRW",
+  "unitLabel": "원",
+  "description": "일비 및 교통비 기준(예시)",
+  "regions": [
+    { "region": "서울지역", "amount": 50000 },
+    { "region": "경기지역", "amount": 50000 },
+    { "region": "충청지역", "amount": 100000 },
+    { "region": "전북/전남지역", "amount": 150000 },
+    { "region": "경북/경남지역", "amount": 150000 },
+    { "region": "제주지역", "amount": 200000 }
+  ]
+}

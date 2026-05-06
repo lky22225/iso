@@ -1,0 +1,200 @@
+{
+  "standard": "ISO 14001",
+  "unit": "MD",
+  "riskCategories": [
+    "high",
+    "medium",
+    "low",
+    "limited"
+  ],
+  "headcountBrackets": [
+    {
+      "min": 1,
+      "max": 5,
+      "high": { "initial": 3, "surveillance": 1, "renewal": 2 },
+      "medium": { "initial": 2.5, "surveillance": 1, "renewal": 2 },
+      "low": { "initial": 2.5, "surveillance": 1, "renewal": 2 },
+      "limited": { "initial": 2.5, "surveillance": 1, "renewal": 2 }
+    },
+    {
+      "min": 6,
+      "max": 10,
+      "high": { "initial": 3.5, "surveillance": 1.5, "renewal": 2.5 },
+      "medium": { "initial": 3, "surveillance": 1, "renewal": 2 },
+      "low": { "initial": 3, "surveillance": 1, "renewal": 2 },
+      "limited": { "initial": 3, "surveillance": 1, "renewal": 2 }
+    },
+    {
+      "min": 11,
+      "max": 15,
+      "high": { "initial": 4.5, "surveillance": 1.5, "renewal": 3 },
+      "medium": { "initial": 3.5, "surveillance": 1.5, "renewal": 2.5 },
+      "low": { "initial": 3, "surveillance": 1, "renewal": 2 },
+      "limited": { "initial": 3, "surveillance": 1, "renewal": 2 }
+    },
+    {
+      "min": 16,
+      "max": 25,
+      "high": { "initial": 5.5, "surveillance": 2, "renewal": 4 },
+      "medium": { "initial": 4.5, "surveillance": 1.5, "renewal": 3 },
+      "low": { "initial": 3.5, "surveillance": 1.5, "renewal": 2.5 },
+      "limited": { "initial": 3, "surveillance": 1, "renewal": 2 }
+    },
+    {
+      "min": 26,
+      "max": 45,
+      "high": { "initial": 7, "surveillance": 2.5, "renewal": 5 },
+      "medium": { "initial": 5.5, "surveillance": 2, "renewal": 4 },
+      "low": { "initial": 4, "surveillance": 1.5, "renewal": 3 },
+      "limited": { "initial": 3, "surveillance": 1, "renewal": 2 }
+    },
+    {
+      "min": 46,
+      "max": 65,
+      "high": { "initial": 8, "surveillance": 3, "renewal": 5.5 },
+      "medium": { "initial": 6, "surveillance": 2, "renewal": 4 },
+      "low": { "initial": 4.5, "surveillance": 1.5, "renewal": 3 },
+      "limited": { "initial": 3.5, "surveillance": 1.5, "renewal": 2.5 }
+    },
+    {
+      "min": 66,
+      "max": 85,
+      "high": { "initial": 9, "surveillance": 3, "renewal": 6 },
+      "medium": { "initial": 7, "surveillance": 2.5, "renewal": 5 },
+      "low": { "initial": 5, "surveillance": 2, "renewal": 3.5 },
+      "limited": { "initial": 3.5, "surveillance": 1.5, "renewal": 2.5 }
+    },
+    {
+      "min": 86,
+      "max": 125,
+      "high": { "initial": 11, "surveillance": 4, "renewal": 7.5 },
+      "medium": { "initial": 8, "surveillance": 3, "renewal": 5.5 },
+      "low": { "initial": 5.5, "surveillance": 2, "renewal": 4 },
+      "limited": { "initial": 4, "surveillance": 1.5, "renewal": 3 }
+    },
+    {
+      "min": 126,
+      "max": 175,
+      "high": { "initial": 12, "surveillance": 4, "renewal": 8 },
+      "medium": { "initial": 9, "surveillance": 3, "renewal": 6 },
+      "low": { "initial": 6, "surveillance": 2, "renewal": 4 },
+      "limited": { "initial": 4.5, "surveillance": 1.5, "renewal": 3 }
+    },
+    {
+      "min": 176,
+      "max": 275,
+      "high": { "initial": 13, "surveillance": 4.5, "renewal": 9 },
+      "medium": { "initial": 10, "surveillance": 3.5, "renewal": 7 },
+      "low": { "initial": 7, "surveillance": 2.5, "renewal": 5 },
+      "limited": { "initial": 5, "surveillance": 2, "renewal": 3.5 }
+    },
+    {
+      "min": 276,
+      "max": 425,
+      "high": { "initial": 15, "surveillance": 5, "renewal": 10 },
+      "medium": { "initial": 11, "surveillance": 4, "renewal": 7.5 },
+      "low": { "initial": 8, "surveillance": 3, "renewal": 5.5 },
+      "limited": { "initial": 5.5, "surveillance": 2, "renewal": 4 }
+    },
+    {
+      "min": 426,
+      "max": 625,
+      "high": { "initial": 16, "surveillance": 5.5, "renewal": 11 },
+      "medium": { "initial": 12, "surveillance": 4, "renewal": 8 },
+      "low": { "initial": 9, "surveillance": 3, "renewal": 6 },
+      "limited": { "initial": 6, "surveillance": 2, "renewal": 4 }
+    },
+    {
+      "min": 626,
+      "max": 875,
+      "high": { "initial": 17, "surveillance": 6, "renewal": 12 },
+      "medium": { "initial": 13, "surveillance": 4.5, "renewal": 9 },
+      "low": { "initial": 10, "surveillance": 3.5, "renewal": 7 },
+      "limited": { "initial": 6.5, "surveillance": 2.5, "renewal": 4.5 }
+    },
+    {
+      "min": 876,
+      "max": 1175,
+      "high": { "initial": 19, "surveillance": 6.5, "renewal": 13 },
+      "medium": { "initial": 15, "surveillance": 5, "renewal": 10 },
+      "low": { "initial": 11, "surveillance": 4, "renewal": 7.5 },
+      "limited": { "initial": 7, "surveillance": 2.5, "renewal": 5 }
+    },
+    {
+      "min": 1176,
+      "max": 1550,
+      "high": { "initial": 20, "surveillance": 7, "renewal": 13.5 },
+      "medium": { "initial": 16, "surveillance": 5.5, "renewal": 11 },
+      "low": { "initial": 12, "surveillance": 4, "renewal": 8 },
+      "limited": { "initial": 7.5, "surveillance": 2.5, "renewal": 5 }
+    },
+    {
+      "min": 1551,
+      "max": 2025,
+      "high": { "initial": 21, "surveillance": 7, "renewal": 14 },
+      "medium": { "initial": 17, "surveillance": 6, "renewal": 11.5 },
+      "low": { "initial": 12, "surveillance": 4, "renewal": 8 },
+      "limited": { "initial": 8, "surveillance": 3, "renewal": 5.5 }
+    },
+    {
+      "min": 2026,
+      "max": 2675,
+      "high": { "initial": 23, "surveillance": 8, "renewal": 15.5 },
+      "medium": { "initial": 18, "surveillance": 6, "renewal": 12 },
+      "low": { "initial": 13, "surveillance": 4.5, "renewal": 9 },
+      "limited": { "initial": 8.5, "surveillance": 3, "renewal": 6 }
+    },
+    {
+      "min": 2676,
+      "max": 3450,
+      "high": { "initial": 25, "surveillance": 8.5, "renewal": 17 },
+      "medium": { "initial": 19, "surveillance": 6.5, "renewal": 13 },
+      "low": { "initial": 14, "surveillance": 5, "renewal": 9.5 },
+      "limited": { "initial": 9, "surveillance": 3, "renewal": 6 }
+    },
+    {
+      "min": 3451,
+      "max": 4350,
+      "high": { "initial": 27, "surveillance": 9, "renewal": 18 },
+      "medium": { "initial": 20, "surveillance": 7, "renewal": 13.5 },
+      "low": { "initial": 15, "surveillance": 5, "renewal": 10 },
+      "limited": { "initial": 10, "surveillance": 3.5, "renewal": 7 }
+    },
+    {
+      "min": 4351,
+      "max": 5450,
+      "high": { "initial": 28, "surveillance": 10, "renewal": 19 },
+      "medium": { "initial": 21, "surveillance": 7, "renewal": 14 },
+      "low": { "initial": 16, "surveillance": 5.5, "renewal": 11 },
+      "limited": { "initial": 11, "surveillance": 4, "renewal": 7.5 }
+    },
+    {
+      "min": 5451,
+      "max": 6800,
+      "high": { "initial": 30, "surveillance": 10, "renewal": 20 },
+      "medium": { "initial": 23, "surveillance": 8, "renewal": 15.5 },
+      "low": { "initial": 17, "surveillance": 6, "renewal": 11.5 },
+      "limited": { "initial": 12, "surveillance": 4, "renewal": 8 }
+    },
+    {
+      "min": 6801,
+      "max": 8500,
+      "high": { "initial": 32, "surveillance": 11, "renewal": 21.5 },
+      "medium": { "initial": 25, "surveillance": 8.5, "renewal": 17 },
+      "low": { "initial": 19, "surveillance": 6.5, "renewal": 13 },
+      "limited": { "initial": 13, "surveillance": 4.5, "renewal": 9 }
+    },
+    {
+      "min": 8501,
+      "max": 10700,
+      "high": { "initial": 34, "surveillance": 11.5, "renewal": 25 },
+      "medium": { "initial": 27, "surveillance": 9, "renewal": 18 },
+      "low": { "initial": 20, "surveillance": 7, "renewal": 13.5 },
+      "limited": { "initial": 14, "surveillance": 5, "renewal": 9.5 }
+    }
+  ],
+  "overMaxRule": {
+    "min": 10701,
+    "message": "협의"
+  }
+}
