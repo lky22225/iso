@@ -260,7 +260,7 @@ export function ContactForm({ defaultIntent }: Props) {
         <legend className="text-sm font-medium text-ink-primary">희망 인증 (복수 선택)</legend>
         <div className="mt-2 flex flex-wrap gap-3 text-sm text-ink-secondary">
           {standards.map((s) => (
-            <label key={s} className="flex cursor-pointer items-center gap-2">
+            <label key={s.value} className="flex cursor-pointer items-center gap-2">
               <input
                 type="checkbox"
                 name="standards"
