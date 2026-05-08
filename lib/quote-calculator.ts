@@ -94,12 +94,14 @@ function getLaborDailyRate(standard: StandardCode): number {
   return rateRow.dailyRate;
 }
 
-function getTravelDailyRate(region: string): number {
+function getRegionTravelExpense(region: string): { travelPerMdAmount: number; vehicleAmount: number } {
   const regionRow = dailyTravelExpenses.regions.find((row) => row.region === region);
   if (!regionRow) {
     throw new Error(`일비(교통비) 기준이 없습니다: ${region}`);
   }
-  return regionRow.amount;
+  const v = (regionRow as { vehicle?: number }).vehicle;
+  const vehicleAmount = typeof v === "number" ? v : 0;
+  return { travelPerMdAmount: regionRow.amount, vehicleAmount };
 }
 
 export type QuoteResult =
@@ -117,19 +119,22 @@ export type QuoteResult =
       riskCategory?: RiskCategory;
       auditDaysMd: number;
       laborDailyRate: number;
-      travelDailyRate: number;
+      travelPerMdAmount: number;
+      vehicleAmount: number;
       auditAmount: number;
       travelAmount: number;
       totalAmountVatExcluded: number;
       formulas: {
         auditDays: string;
         auditAmount: string;
+        vehicleAmount: string;
         travelAmount: string;
         total: string;
       };
       display: {
         auditDays: string;
         auditAmount: string;
+        vehicleAmount: string;
         travelAmount: string;
         totalAmountVatExcluded: string;
       };
@@ -171,10 +176,10 @@ export function calculateQuote(input: QuoteInput): QuoteResult {
   }
 
   const laborDailyRate = getLaborDailyRate(input.standard);
-  const travelDailyRate = getTravelDailyRate(regionName);
+  const { travelPerMdAmount, vehicleAmount } = getRegionTravelExpense(regionName);
 
   const auditAmount = auditDaysMd * laborDailyRate;
-  const travelAmount = auditDaysMd * travelDailyRate;
+  const travelAmount = auditDaysMd * travelPerMdAmount + vehicleAmount;
   const totalAmountVatExcluded = auditAmount + travelAmount;
 
   return {
@@ -187,19 +192,22 @@ export function calculateQuote(input: QuoteInput): QuoteResult {
     riskCategory: input.riskCategory,
     auditDaysMd,
     laborDailyRate,
-    travelDailyRate,
+    travelPerMdAmount,
+    vehicleAmount,
     auditAmount,
     travelAmount,
     totalAmountVatExcluded,
     formulas: {
       auditDays: `기준표 매칭 결과 = ${auditDaysMd} M/D`,
       auditAmount: `${auditDaysMd} M/D × ${formatKrw(laborDailyRate)}/MD = ${formatKrw(auditAmount)}`,
-      travelAmount: `${auditDaysMd} M/D × ${formatKrw(travelDailyRate)}/MD = ${formatKrw(travelAmount)}`,
+      vehicleAmount: `왕복교통비 = ${formatKrw(vehicleAmount)}`,
+      travelAmount: `${auditDaysMd} M/D × ${formatKrw(travelPerMdAmount)}(일비) + ${formatKrw(vehicleAmount)}(왕복교통비) = ${formatKrw(travelAmount)}`,
       total: `${formatKrw(auditAmount)} + ${formatKrw(travelAmount)} = ${formatKrw(totalAmountVatExcluded)} (VAT 별도)`,
     },
     display: {
       auditDays: `${auditDaysMd} M/D`,
       auditAmount: formatKrw(auditAmount),
+      vehicleAmount: formatKrw(vehicleAmount),
       travelAmount: formatKrw(travelAmount),
       totalAmountVatExcluded: `${formatKrw(totalAmountVatExcluded)} (VAT 별도)`,
     },

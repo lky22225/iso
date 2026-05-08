@@ -35,6 +35,7 @@ export function ContactForm({ defaultIntent }: Props) {
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "err">("idle");
   const [message, setMessage] = useState("");
   const [simMessage, setSimMessage] = useState("");
+  const [headcountValue, setHeadcountValue] = useState("");
   const [simStandard, setSimStandard] = useState<StandardCode>("iso9001");
   const [selectedAuditType, setSelectedAuditType] = useState<AuditType>("initial");
   const [simResultText, setSimResultText] = useState("");
@@ -108,6 +109,7 @@ export function ContactForm({ defaultIntent }: Props) {
         : []),
       `- 심사기간: ${result.display.auditDays}`,
       `- 심사금액: ${result.formulas.auditAmount}`,
+      `- 왕복교통비: ${result.formulas.vehicleAmount}`,
       `- 일비(교통비): ${result.formulas.travelAmount}`,
       `- 합계금액: ${result.formulas.total}`,
     ].join("\n");
@@ -246,11 +248,13 @@ export function ContactForm({ defaultIntent }: Props) {
         </div>
         <div>
           <label htmlFor="headcount" className="block text-sm font-medium text-ink-primary">
-            인원수(대략)
+            종업원수(대략)
           </label>
           <input
             id="headcount"
             name="headcount"
+            value={headcountValue}
+            onChange={(e) => setHeadcountValue(e.target.value)}
             className="mt-1 w-full rounded-xl border border-black/10 bg-bg-primary px-4 py-2.5 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
           />
         </div>
@@ -396,6 +400,18 @@ export function ContactForm({ defaultIntent }: Props) {
               <option value="limited">제한</option>
             </select>
           </div>
+          <div>
+            <label htmlFor="simulationHeadcount" className="block text-sm font-medium text-ink-primary">
+              종업원수
+            </label>
+            <input
+              id="simulationHeadcount"
+              value={headcountValue}
+              onChange={(e) => setHeadcountValue(e.target.value)}
+              placeholder="상단 종업원수와 연동"
+              className="mt-1 w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
+            />
+          </div>
         </div>
         <button
           type="button"
@@ -411,8 +427,11 @@ export function ContactForm({ defaultIntent }: Props) {
               {simResultText}
             </pre>
             <p className="text-sm font-medium text-ink-primary">
-              예상금액은 실제 상담을 통해 확정 됩니다. 상담남겨주시는 고객께는 타사대비 경쟁력있는
-              비용으로 제안드리겠습니다.
+              예상금액은 실제 상담을 통해 확정 됩니다. 예상금액과 실제 견적과는 다를수 있습니다.
+              상담남겨주시는 고객께는 타사대비 경쟁력있는 비용으로 제안드리겠습니다.
+            </p>
+            <p className="text-sm font-medium text-ink-primary">
+              중복심사도 가능하며, 중복심사의 경우 비용절감 효과가 있습니다.
             </p>
           </>
         )}
