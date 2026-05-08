@@ -37,9 +37,12 @@ export function ContactForm({ defaultIntent }: Props) {
   const [simMessage, setSimMessage] = useState("");
   const [headcountValue, setHeadcountValue] = useState("");
   const [simStandard, setSimStandard] = useState<StandardCode>("iso9001");
+  const [simRegion, setSimRegion] = useState<RegionCode>("seoul");
+  const [simRiskCategory, setSimRiskCategory] = useState<RiskCategory>("medium");
   const [selectedAuditType, setSelectedAuditType] = useState<AuditType>("initial");
   const [simResultText, setSimResultText] = useState("");
   const [showRiskTip, setShowRiskTip] = useState(false);
+  const [hasSimulated, setHasSimulated] = useState(false);
 
   const needsRiskCategory = useMemo(
     () => simStandard === "iso14001" || simStandard === "iso45001",
@@ -65,6 +68,18 @@ export function ContactForm({ defaultIntent }: Props) {
     });
   }
 
+  function clearSimulationOutputsIfNeeded() {
+    if (!hasSimulated) return;
+    const form = formRef.current;
+    const bodyField = form?.elements.namedItem("body") as HTMLTextAreaElement | null;
+    if (bodyField) {
+      bodyField.value = "";
+    }
+    setSimResultText("");
+    setSimMessage("");
+    setHasSimulated(false);
+  }
+
   function onSimulate() {
     setSimMessage("");
     const form = formRef.current;
@@ -79,8 +94,8 @@ export function ContactForm({ defaultIntent }: Props) {
     }
 
     const auditType = (fd.get("auditType") as AuditType) || "initial";
-    const region = (fd.get("simulationRegion") as RegionCode) || "seoul";
-    const riskCategory = (fd.get("simulationRiskCategory") as RiskCategory | null) || undefined;
+    const region = simRegion;
+    const riskCategory = needsRiskCategory ? simRiskCategory : undefined;
 
     const result = calculateQuote({
       standard: simStandard,
@@ -109,7 +124,6 @@ export function ContactForm({ defaultIntent }: Props) {
         : []),
       `- 심사기간: ${result.display.auditDays}`,
       `- 심사금액: ${result.formulas.auditAmount}`,
-      `- 왕복교통비: ${result.formulas.vehicleAmount}`,
       `- 일비(교통비): ${result.formulas.travelAmount}`,
       `- 합계금액: ${result.formulas.total}`,
     ].join("\n");
@@ -120,6 +134,7 @@ export function ContactForm({ defaultIntent }: Props) {
 
     setSimResultText(simulationText);
     setSimMessage("예상비용 시뮬레이션을 반영했습니다. 문의내용에 자동 입력되었습니다.");
+    setHasSimulated(true);
   }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -254,7 +269,10 @@ export function ContactForm({ defaultIntent }: Props) {
             id="headcount"
             name="headcount"
             value={headcountValue}
-            onChange={(e) => setHeadcountValue(e.target.value)}
+            onChange={(e) => {
+              setHeadcountValue(e.target.value);
+              clearSimulationOutputsIfNeeded();
+            }}
             className="mt-1 w-full rounded-xl border border-black/10 bg-bg-primary px-4 py-2.5 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
           />
         </div>
@@ -308,7 +326,10 @@ export function ContactForm({ defaultIntent }: Props) {
               id="simulationStandard"
               name="simulationStandard"
               value={simStandard}
-              onChange={(e) => setSimStandard(e.target.value as StandardCode)}
+              onChange={(e) => {
+                setSimStandard(e.target.value as StandardCode);
+                clearSimulationOutputsIfNeeded();
+              }}
               className="mt-1 w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
             >
               {standards
@@ -327,7 +348,11 @@ export function ContactForm({ defaultIntent }: Props) {
             <select
               id="simulationRegion"
               name="simulationRegion"
-              defaultValue="seoul"
+              value={simRegion}
+              onChange={(e) => {
+                setSimRegion(e.target.value as RegionCode);
+                clearSimulationOutputsIfNeeded();
+              }}
               className="mt-1 w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
             >
               {regionOptions.map((region) => (
@@ -390,7 +415,11 @@ export function ContactForm({ defaultIntent }: Props) {
             <select
               id="simulationRiskCategory"
               name="simulationRiskCategory"
-              defaultValue="medium"
+              value={simRiskCategory}
+              onChange={(e) => {
+                setSimRiskCategory(e.target.value as RiskCategory);
+                clearSimulationOutputsIfNeeded();
+              }}
               disabled={!needsRiskCategory}
               className="mt-1 w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20 disabled:cursor-not-allowed disabled:bg-gray-100"
             >
@@ -407,7 +436,10 @@ export function ContactForm({ defaultIntent }: Props) {
             <input
               id="simulationHeadcount"
               value={headcountValue}
-              onChange={(e) => setHeadcountValue(e.target.value)}
+              onChange={(e) => {
+                setHeadcountValue(e.target.value);
+                clearSimulationOutputsIfNeeded();
+              }}
               placeholder="상단 종업원수와 연동"
               className="mt-1 w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
             />
