@@ -43,6 +43,8 @@ npm start
 
 `POST /api/inquiry`는 Postgres(`inquiries` 테이블, `db/schema.sql`)에 저장합니다. Vercel에서는 Vercel Postgres 연결 문자열이 자동 주입되며, 로컬에서는 `.env.local`의 `POSTGRES_URL`을 사용합니다.
 
+문의 알림 메일은 **기본 비활성**입니다. 사용할 때 `.env.local`에 `INQUIRY_EMAIL_ENABLED=true`와 SMTP 변수(`.env.example` 참고)를 설정하면 접수 시 `isopartner5446@gmail.com`(기본 수신, `INQUIRY_NOTIFY_TO`로 변경 가능)으로 발송됩니다.
+
 ## 커스터마이징
 
 - 연락처·주소·사업자번호: `components/Footer.tsx`, `components/Header.tsx`, `components/HomeContent.tsx`의 예시 값을 수정하세요.

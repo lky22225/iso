@@ -66,7 +66,7 @@ export function Footer() {
               <br />
               msg: 010-2432-5446
               <br />
-              Email: lky22225@gmail.com
+              Email: isopartner5446@gmail.com
             </p>
           </div>
         </div>

@@ -752,7 +752,7 @@ export function HomeContent() {
                 010-2432-5446
               </a>
               <a
-                href="mailto:lky22225@gmail.com"
+                href="mailto:isopartner5446@gmail.com"
                 className="rounded-full border border-white/40 px-8 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
               >
                 이메일 문의
