@@ -1,0 +1,4 @@
+# 크롤링: 홈(/)만 허용. /admin 포함 그 외 모든 경로 비허용
+User-agent: *
+Disallow: /
+Allow: /$
