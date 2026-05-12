@@ -2,7 +2,50 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import type { FaqBlock } from "@/lib/faq-data";
 import { useState } from "react";
+
+function HomeFaqBlocks({ blocks }: { blocks: FaqBlock[] }) {
+  return (
+    <div className="mt-3 space-y-3 text-sm leading-relaxed text-ink-secondary">
+      {blocks.map((block, i) => {
+        const key = `${block.type}-${i}`;
+        switch (block.type) {
+          case "p":
+            return (
+              <p key={key} className="[&:empty]:hidden">
+                {block.text}
+              </p>
+            );
+          case "h3":
+            return (
+              <h3 key={key} className="text-sm font-semibold text-ink-primary">
+                {block.text}
+              </h3>
+            );
+          case "ul":
+            return (
+              <ul key={key} className="list-disc space-y-1.5 pl-5">
+                {block.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            );
+          case "ol":
+            return (
+              <ol key={key} className="list-decimal space-y-1.5 pl-5">
+                {block.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ol>
+            );
+          default:
+            return null;
+        }
+      })}
+    </div>
+  );
+}
 
 const standards = [
   {
@@ -54,26 +97,161 @@ const whyUs = [
   },
 ];
 
-const faqs = [
+const homeFaqs: { q: string; blocks: FaqBlock[] }[] = [
   {
     q: "ISO 인증은 의무인가요?",
-    a: "법적 의무가 아닌 경우가 많지만, 입찰이나 거래처 요구로 필요해지는 경우가 많습니다.",
+    blocks: [
+      {
+        type: "p",
+        text: "대부분의 ISO 인증은 법적으로 반드시 취득해야 하는 의무 인증은 아닙니다.",
+      },
+      {
+        type: "p",
+        text: "하지만 실제 비즈니스 환경에서는 고객사 요구사항, 입찰 조건, 협력사 등록 기준 등으로 인해 사실상 필수처럼 운영되는 경우가 많습니다.",
+      },
+      { type: "p", text: "특히 아래와 같은 경우 ISO 인증 요구가 증가하고 있습니다:" },
+      {
+        type: "ul",
+        items: [
+          "공공기관 및 대기업 입찰 참여",
+          "글로벌 고객사 협력 등록",
+          "해외 수출 및 공급망 참여",
+          "ESG 및 리스크 관리 요구 대응",
+          "정보보안 및 품질 요구사항 충족",
+        ],
+      },
+      {
+        type: "p",
+        text: "즉, 법적 의무 여부보다 “거래 가능 여부”에 더 큰 영향을 미치는 경우가 많습니다.",
+      },
+    ],
   },
   {
-    q: "준비 기간은 얼마나 걸리나요?",
-    a: "조직 규모·준비도·범위에 따라 다릅니다. 목표 일정을 알려주시면 현실적인 로드맵을 제안합니다.",
+    q: "인증 준비 기간은 얼마나 걸리나요?",
+    blocks: [
+      {
+        type: "p",
+        text: "ISO 인증 준비 기간은 기업의 규모, 현재 운영 수준, 준비 상태, 인증 범위에 따라 달라집니다.",
+      },
+      { type: "p", text: "일반적으로:" },
+      {
+        type: "ul",
+        items: ["소규모 기업: 약 1~2개월", "중견기업: 약 2~4개월", "복수 사업장/대기업: 3개월 이상"],
+      },
+      { type: "p", text: "정도가 소요됩니다." },
+      { type: "p", text: "특히 다음 요소가 기간에 큰 영향을 줍니다:" },
+      {
+        type: "ul",
+        items: [
+          "기존 문서 및 프로세스 수준",
+          "내부 운영 체계",
+          "담당 인력 확보 여부",
+          "여러 ISO 동시 진행 여부",
+        ],
+      },
+      {
+        type: "p",
+        text: "목표 일정이나 고객사 요구 일정이 있다면, 현재 상태를 기준으로 현실적인 구축 및 심사 로드맵을 제안드릴 수 있습니다.",
+      },
+    ],
   },
   {
-    q: "비용은 왜 회사마다 다른가요?",
-    a: "인원·사업장 수·범위·복잡도·표준 수·심사 공수에 따라 산정됩니다.",
+    q: "왜 회사마다 비용 차이가 큰가요?",
+    blocks: [
+      {
+        type: "p",
+        text: "ISO 인증 비용은 단순 고정 가격이 아니라 기업의 조건에 따라 산정됩니다.",
+      },
+      { type: "p", text: "주요 비용 산정 요소:" },
+      {
+        type: "ul",
+        items: [
+          "직원 수",
+          "사업장 수",
+          "인증 범위",
+          "조직 복잡도",
+          "적용 ISO 표준 수",
+          "심사 일수(Man-day)",
+        ],
+      },
+      {
+        type: "p",
+        text: "예를 들어 단일 사업장의 소규모 기업에서 단일 ISO 인증을 진행하는 경우와, 다중 사업장 운영·여러 ISO 통합 인증·해외 고객사 요구사항이 포함되는 경우는 심사 범위와 준비 수준이 크게 다르기 때문에 비용 차이가 발생합니다.",
+      },
+      {
+        type: "p",
+        text: "정확한 비용은 간단한 진단만으로도 예상 범위를 확인할 수 있습니다.",
+      },
+    ],
   },
   {
-    q: "문서만 잘 만들면 통과하나요?",
-    a: "2단계 심사에서는 실제 운영 기록과 인터뷰로 실행 여부를 확인합니다.",
+    q: "문서만 잘 만들면 인증 통과 가능한가요?",
+    blocks: [
+      { type: "p", text: "아닙니다." },
+      {
+        type: "p",
+        text: "ISO 인증은 단순 문서 심사가 아니라 실제 운영 여부를 검증하는 시스템 심사입니다.",
+      },
+      { type: "p", text: "특히 Stage 2 심사에서는 아래 내용을 직접 확인합니다:" },
+      {
+        type: "ul",
+        items: [
+          "실제 운영 기록",
+          "업무 수행 방식",
+          "담당자 인터뷰",
+          "현장 운영 상태",
+          "프로세스 실행 여부",
+        ],
+      },
+      { type: "p", text: "즉:" },
+      {
+        type: "ul",
+        items: [
+          "“문서만 존재하는 시스템”은 통과하기 어렵고,",
+          "“실제로 운영되는 시스템”이어야 인증 유지가 가능합니다.",
+        ],
+      },
+      {
+        type: "p",
+        text: "ISO의 핵심은 문서 작성이 아니라 운영 체계의 실행과 지속적 개선입니다.",
+      },
+    ],
   },
   {
     q: "여러 ISO를 동시에 받을 수 있나요?",
-    a: "가능합니다. 공통 요구사항을 통합하면 운영 효율이 좋아질 수 있습니다.",
+    blocks: [
+      { type: "p", text: "가능합니다." },
+      {
+        type: "p",
+        text: "많은 기업이 운영 효율성과 비용 절감을 위해 여러 ISO를 동시에 구축 및 인증받고 있습니다.",
+      },
+      { type: "p", text: "대표적인 조합:" },
+      {
+        type: "ul",
+        items: [
+          "ISO 9001 + ISO 14001",
+          "ISO 9001 + ISO 45001",
+          "ISO 9001 + ISO 27001",
+          "통합 경영시스템 구축",
+        ],
+      },
+      {
+        type: "p",
+        text: "여러 ISO는 공통 요구사항 구조(HLS)를 기반으로 하기 때문에:",
+      },
+      {
+        type: "ul",
+        items: ["문서 중복 감소", "운영 효율 향상", "심사 비용 절감", "관리 체계 통합"],
+      },
+      {
+        type: "p",
+        text: "효과를 얻을 수 있습니다.",
+      },
+      {
+        type: "p",
+        text: "특히 성장 단계 기업이나 글로벌 거래를 준비하는 기업에서는 통합 구축 전략이 매우 효과적입니다.",
+      },
+    ],
   },
 ];
 
@@ -528,15 +706,15 @@ export function HomeContent() {
         <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
           <h2 className="mb-10 text-center text-2xl font-semibold text-ink-primary sm:text-3xl">자주 묻는 질문</h2>
           <div className="mx-auto max-w-3xl divide-y divide-black/10 rounded-2xl border border-black/5 bg-white shadow-card">
-            {faqs.map((f) => (
+            {homeFaqs.map((f) => (
               <details key={f.q} className="group px-6 py-4">
                 <summary className="cursor-pointer list-none text-sm font-semibold text-ink-primary [&::-webkit-details-marker]:hidden">
                   <span className="flex items-center justify-between gap-4">
                     {f.q}
-                    <span className="text-accent transition group-open:rotate-180">▼</span>
+                    <span className="shrink-0 text-accent transition group-open:rotate-180">▼</span>
                   </span>
                 </summary>
-                <p className="mt-3 text-sm leading-relaxed text-ink-secondary">{f.a}</p>
+                <HomeFaqBlocks blocks={f.blocks} />
               </details>
             ))}
           </div>

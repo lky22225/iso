@@ -4,13 +4,33 @@
 
 ## 실행 방법
 
+프로젝트 루트(`package.json`이 있는 폴더)에서 실행합니다.
+
+### 1) 로컬 Postgres (문의·관리자 API 테스트 시)
+
 ```bash
-cd web
+docker compose up -d
+```
+
+초기 1회, DB에 테이블을 만듭니다(Postgres가 뜬 뒤).
+
+```bash
+docker compose cp db/schema.sql postgres:/tmp/schema.sql
+docker compose exec postgres psql -U iso -d iso -f /tmp/schema.sql
+```
+
+`.env.example`을 참고해 `.env.local`을 만들고 `POSTGRES_URL`을 넣습니다.
+
+### 2) Next.js 개발 서버
+
+```bash
 npm install
 npm run dev
 ```
 
 브라우저에서 [http://localhost:3000](http://localhost:3000)을 엽니다.
+
+Postgres 없이도 정적 페이지·UI는 대부분 열리지만, `POST /api/inquiry`·관리자 문의 목록 등 DB를 쓰는 기능은 `POSTGRES_URL` 설정 후에만 동작합니다.
 
 ## 빌드
 
@@ -21,7 +41,7 @@ npm start
 
 ## 문의 API
 
-`POST /api/inquiry`는 제출 내용을 `data/inquiries.json`에 누적 저장합니다. Vercel 등 서버리스 환경에서는 파일 쓰기가 유지되지 않을 수 있으므로, 운영 시에는 DB 또는 이메일/CRM 연동을 권장합니다.
+`POST /api/inquiry`는 Postgres(`inquiries` 테이블, `db/schema.sql`)에 저장합니다. Vercel에서는 Vercel Postgres 연결 문자열이 자동 주입되며, 로컬에서는 `.env.local`의 `POSTGRES_URL`을 사용합니다.
 
 ## 커스터마이징
 
