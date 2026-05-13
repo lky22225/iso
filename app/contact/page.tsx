@@ -1,11 +1,16 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ContactForm } from "@/components/ContactForm";
+import { pageOgMeta } from "@/lib/open-graph";
 import type { Metadata } from "next";
 
+const title = "인증신청·견적·상담 | ISO 인증 파트너";
+const description = "무료 상담 및 견적 요청. 회사명, 희망 인증, 목표 일정을 남겨 주세요.";
+
 export const metadata: Metadata = {
-  title: "인증신청·견적·상담 | ISO 인증 파트너",
-  description: "무료 상담 및 견적 요청. 회사명, 희망 인증, 목표 일정을 남겨 주세요.",
+  title,
+  description,
+  ...pageOgMeta({ title, description, path: "/contact" }),
 };
 
 type Props = { searchParams: { type?: string } };

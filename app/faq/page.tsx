@@ -2,6 +2,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import type { FaqBlock } from "@/lib/faq-data";
 import { faqSections } from "@/lib/faq-data";
+import { pageOgMeta } from "@/lib/open-graph";
 import type { Metadata } from "next";
 
 function FaqAnswer({ blocks }: { blocks: FaqBlock[] }) {
@@ -46,10 +47,14 @@ function FaqAnswer({ blocks }: { blocks: FaqBlock[] }) {
   );
 }
 
+const title = "FAQ | ISO 인증 파트너";
+const description =
+  "ISO 인증 FAQ 20문항. 기본 개념부터 절차, 비용, 심사, 범위, 인증기관 선택, 준비 실수까지 상세히 정리했습니다.";
+
 export const metadata: Metadata = {
-  title: "FAQ | ISO 인증 파트너",
-  description:
-    "ISO 인증 FAQ 20문항. 기본 개념부터 절차, 비용, 심사, 범위, 인증기관 선택, 준비 실수까지 상세히 정리했습니다.",
+  title,
+  description,
+  ...pageOgMeta({ title, description, path: "/faq" }),
 };
 
 export default function FaqPage() {

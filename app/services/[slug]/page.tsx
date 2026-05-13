@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { pageOgMeta } from "@/lib/open-graph";
 import { isoServices } from "@/lib/iso-services";
 
 type Props = {
@@ -16,9 +17,16 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: Props): Metadata {
   const item = isoServices.find((service) => service.slug === params.slug);
   if (!item) return { title: "서비스 안내" };
+  const title = `ISO ${item.code} | ${item.title}`;
+  const description = item.summary;
   return {
-    title: `ISO ${item.code} | ${item.title}`,
-    description: item.summary,
+    title,
+    description,
+    ...pageOgMeta({
+      title,
+      description,
+      path: `/services/${item.slug}`,
+    }),
   };
 }
 

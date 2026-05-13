@@ -1,12 +1,17 @@
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
+import { pageOgMeta } from "@/lib/open-graph";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+
+const title = "인증절차 상세 | ISO 인증 파트너";
+const description = "ISO 인증 절차 상세 이미지";
 
 export const metadata: Metadata = {
-  title: "인증절차 상세 | ISO 인증 파트너",
-  description: "ISO 인증 절차 상세 이미지",
+  title,
+  description,
+  ...pageOgMeta({ title, description, path: "/process" }),
 };
 
 export default function ProcessPage() {

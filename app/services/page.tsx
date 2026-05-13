@@ -3,10 +3,15 @@ import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { isoOverviewText, isoServices } from "@/lib/iso-services";
+import { pageOgMeta } from "@/lib/open-graph";
+
+const title = "ISO 인증 개요 | ISO 인증서비스";
+const description = "ISO 인증 개요 및 ISO 9001, 14001, 45001, 27001 안내";
 
 export const metadata: Metadata = {
-  title: "ISO 인증 개요 | ISO 인증서비스",
-  description: "ISO 인증 개요 및 ISO 9001, 14001, 45001, 27001 안내",
+  title,
+  description,
+  ...pageOgMeta({ title, description, path: "/services" }),
 };
 
 export default function ServicesOverviewPage() {
