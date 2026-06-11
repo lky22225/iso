@@ -255,6 +255,31 @@ const homeFaqs: { q: string; blocks: FaqBlock[] }[] = [
   },
 ];
 
+const guideItems = [
+  {
+    title: "ISO란?",
+    href: "#faq",
+    video: {
+      href: "https://www.youtube.com/watch?v=DB7rDk9s14A",
+      thumbnail: "/images/iso-guide-youtube-thumbnail.png",
+      alt: "국제 표준화 기구(ISO): 글로벌 표준 시스템 이해하기",
+      ariaLabel: "국제 표준화 기구(ISO) 글로벌 표준 시스템 이해하기 동영상 보기",
+    },
+  },
+  {
+    title: "표준 vs 인증",
+    href: "#faq",
+    video: {
+      href: "https://www.youtube.com/watch?v=WDV_Ahah9qk",
+      thumbnail: "/images/iso-standard-vs-cert-youtube-thumbnail.png",
+      alt: "ISO 인증의 모든 것: 글로벌 표준 시스템 가이드",
+      ariaLabel: "ISO 인증의 모든 것 글로벌 표준 시스템 가이드 동영상 보기",
+    },
+  },
+  { title: "기간·비용 요인", href: "#process" },
+  { title: "사용자 여정별 안내", href: "#checklist" },
+];
+
 const processCards = [
   {
     step: 1,
@@ -477,26 +502,6 @@ export function HomeContent() {
         </div>
       </section>
 
-      {/* Feature icons row */}
-      <section className="py-12">
-        <div className="mx-auto grid max-w-content gap-6 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
-          {[
-            { t: "표준 선택", d: "업종·요구에 맞는 규격을 빠르게 제안", bg: "bg-violet-100/80" },
-            { t: "절차 안내", d: "1·2단계·사후까지 한눈에", bg: "bg-sky-100/80" },
-            { t: "준비 체크", d: "필수·권장 서류 체크리스트", bg: "bg-emerald-100/80" },
-            { t: "문의·견적", d: "최소 입력으로 맞춤 회신", bg: "bg-amber-100/80" },
-          ].map((f) => (
-            <div key={f.t} className={`rounded-2xl p-6 ${f.bg} ring-1 ring-black/5`}>
-              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-white/80 text-lg font-bold text-accent">
-                ✓
-              </div>
-              <h3 className="font-semibold text-ink-primary">{f.t}</h3>
-              <p className="mt-2 text-sm text-ink-secondary">{f.d}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Process */}
       <section id="process" className="bg-white py-[var(--section-y)]">
         <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
@@ -576,12 +581,20 @@ export function HomeContent() {
                 제조·IT·서비스 등 다양한 업종에서 인증 범위 설정과 심사 대응을 지원했습니다. 실제
                 프로젝트명은 비공개 원칙을 따르며, 상담 시 유사 사례를 안내해 드립니다.
               </p>
-              <Link
-                href="/contact"
-                className="mt-6 inline-flex w-fit rounded-full bg-ink-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-ink-primary/90"
-              >
-                사례 상담 요청
-              </Link>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href="/contact"
+                  className="inline-flex rounded-full bg-ink-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-ink-primary/90"
+                >
+                  사례 상담 요청
+                </Link>
+                <Link
+                  href="/cases"
+                  className="inline-flex rounded-full bg-ink-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-ink-primary/90"
+                >
+                  실제 사례 보기
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -636,21 +649,47 @@ export function HomeContent() {
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { title: "ISO란?", href: "#faq" },
-              { title: "표준 vs 인증", href: "#faq" },
-              { title: "기간·비용 요인", href: "#process" },
-              { title: "사용자 여정별 안내", href: "#checklist" },
-            ].map((g) => (
+            {guideItems.map((g) => (
               <Link
                 key={g.title}
                 href={g.href}
-                className="group rounded-2xl bg-gradient-to-br from-bg-bg-secondary to-white p-6 ring-1 ring-black/5 transition hover:shadow-cardHover"
+                className="group flex h-full min-h-[7.5rem] flex-col rounded-2xl bg-gradient-to-br from-bg-bg-secondary to-white p-6 ring-1 ring-black/5 transition hover:shadow-cardHover"
               >
                 <span className="text-lg font-semibold text-ink-primary group-hover:text-accent">{g.title}</span>
-                <p className="mt-2 text-sm text-ink-secondary">자세히 보기 →</p>
+                <p className="mt-auto pt-2 text-sm text-ink-secondary">자세히 보기 →</p>
               </Link>
             ))}
+          </div>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {guideItems.map((g) =>
+              g.video ? (
+                <a
+                  key={g.title}
+                  href={g.video.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block overflow-hidden rounded-2xl ring-1 ring-black/5 transition hover:shadow-cardHover"
+                  aria-label={g.video.ariaLabel}
+                >
+                  <div className="relative aspect-video w-full">
+                    <Image
+                      src={g.video.thumbnail}
+                      alt={g.video.alt}
+                      fill
+                      className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                      sizes="(max-width: 1024px) 50vw, 25vw"
+                    />
+                    <span className="absolute inset-0 flex items-center justify-center bg-ink-primary/0 transition group-hover:bg-ink-primary/10">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/90 text-white shadow-card transition group-hover:scale-110">
+                        ▶
+                      </span>
+                    </span>
+                  </div>
+                </a>
+              ) : (
+                <div key={g.title} className="hidden lg:block" aria-hidden="true" />
+              ),
+            )}
           </div>
         </div>
       </section>

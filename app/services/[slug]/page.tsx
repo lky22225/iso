@@ -1,10 +1,32 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { pageOgMeta } from "@/lib/open-graph";
 import { isoServices } from "@/lib/iso-services";
+
+const iso9001Videos = [
+  {
+    href: "https://youtu.be/Yp-WUlzNegw",
+    thumbnail: "/images/iso-9001-youtube-1.png",
+    alt: "ISO9001의 모든 것: 1. ISO9001은 무엇을 요구하는가?",
+    ariaLabel: "ISO9001은 무엇을 요구하는가 동영상 보기",
+  },
+  {
+    href: "https://youtu.be/WtZwtmHo4Ig",
+    thumbnail: "/images/iso-9001-youtube-2.png",
+    alt: "ISO9001의 모든것: 2. ISO9001 요구사항 완벽 해설",
+    ariaLabel: "ISO9001 요구사항 완벽 해설 동영상 보기",
+  },
+  {
+    href: "https://youtu.be/NNEQqxIocKY",
+    thumbnail: "/images/iso-9001-youtube-3.png",
+    alt: "ISO9001의 모든것: 3. ISO9001 인증, 심사원은 무엇을 볼까?",
+    ariaLabel: "ISO9001 인증 심사원이 보는 핵심 동영상 보기",
+  },
+];
 
 type Props = {
   params: { slug: string };
@@ -182,6 +204,40 @@ export default function IsoServiceDetailPage({ params }: Props) {
                     <li>- 조직 운영 체계를 정립하고 싶은 기업</li>
                     <li>- 글로벌 시장 진출을 준비하는 기업</li>
                   </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-lg font-semibold text-ink-primary">ISO 9001 학습 동영상</h2>
+                  <p className="mt-2 text-sm text-ink-secondary">
+                    ISO 9001의 핵심 내용을 영상으로 빠르게 이해해 보세요.
+                  </p>
+                  <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {iso9001Videos.map((video) => (
+                      <a
+                        key={video.href}
+                        href={video.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group block overflow-hidden rounded-2xl ring-1 ring-black/5 transition hover:shadow-cardHover"
+                        aria-label={video.ariaLabel}
+                      >
+                        <div className="relative aspect-video w-full">
+                          <Image
+                            src={video.thumbnail}
+                            alt={video.alt}
+                            fill
+                            className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                            sizes="(max-width: 1024px) 50vw, 33vw"
+                          />
+                          <span className="absolute inset-0 flex items-center justify-center bg-ink-primary/0 transition group-hover:bg-ink-primary/10">
+                            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/90 text-white shadow-card transition group-hover:scale-110">
+                              ▶
+                            </span>
+                          </span>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
                 </section>
               </div>
             ) : isIso14001 ? (
