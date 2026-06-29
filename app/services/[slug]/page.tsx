@@ -28,6 +28,27 @@ const iso9001Videos = [
   },
 ];
 
+const iso27001Videos = [
+  {
+    href: "https://youtu.be/YxTWMY7fHrA",
+    thumbnail: "/images/iso-27001-youtube-1.png",
+    alt: "ISO27001의 모든것: 1. ISO27001은 무엇을 요구하는가?",
+    ariaLabel: "ISO27001은 무엇을 요구하는가 동영상 보기",
+  },
+  {
+    href: "https://youtu.be/PlRraM7atA8",
+    thumbnail: "/images/iso-27001-youtube-2.png",
+    alt: "ISO27001의 모든것: 2. ISO27001 요구사항 완전 해설",
+    ariaLabel: "ISO27001 요구사항 완전 해설 동영상 보기",
+  },
+  {
+    href: "https://youtu.be/_W6Kta6StAQ",
+    thumbnail: "/images/iso-27001-youtube-3.png",
+    alt: "ISO27001의 모든것: 3. ISO27001 인증, 심사원은 무엇을 볼까?",
+    ariaLabel: "ISO27001 인증 심사원이 보는 핵심 동영상 보기",
+  },
+];
+
 type Props = {
   params: { slug: string };
 };
@@ -643,6 +664,40 @@ export default function IsoServiceDetailPage({ params }: Props) {
                     <li>- SaaS/클라우드 서비스를 제공하는 기업</li>
                     <li>- 정보보호 인증이 입찰 조건인 기업</li>
                   </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-lg font-semibold text-ink-primary">ISO 27001 학습 동영상</h2>
+                  <p className="mt-2 text-sm text-ink-secondary">
+                    ISO 27001의 핵심 내용을 영상으로 빠르게 이해해 보세요.
+                  </p>
+                  <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {iso27001Videos.map((video) => (
+                      <a
+                        key={video.href}
+                        href={video.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group block overflow-hidden rounded-2xl ring-1 ring-black/5 transition hover:shadow-cardHover"
+                        aria-label={video.ariaLabel}
+                      >
+                        <div className="relative aspect-video w-full">
+                          <Image
+                            src={video.thumbnail}
+                            alt={video.alt}
+                            fill
+                            className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                            sizes="(max-width: 1024px) 50vw, 33vw"
+                          />
+                          <span className="absolute inset-0 flex items-center justify-center bg-ink-primary/0 transition group-hover:bg-ink-primary/10">
+                            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/90 text-white shadow-card transition group-hover:scale-110">
+                              ▶
+                            </span>
+                          </span>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
                 </section>
               </div>
             ) : (
