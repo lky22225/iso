@@ -6,9 +6,17 @@ import Image from "next/image";
 import Link from "next/link";
 
 const title = "실제 사례 | ISO 인증 파트너";
-const description = "도소매·서비스·제조업 ISO 9001 인증 성공 사례와 실제 심사 과정 영상을 확인하세요.";
+const description =
+  "ISO 9001·27001 인증 구축 성공 사례와 실제 심사 과정 영상을 확인하세요.";
 
-const caseVideos = [
+type CaseVideo = {
+  href: string;
+  thumbnail: string;
+  alt: string;
+  ariaLabel: string;
+};
+
+const iso9001CaseVideos: CaseVideo[] = [
   {
     href: "https://youtu.be/1_fxO3k3SIQ",
     thumbnail: "/images/iso-case-youtube-1.png",
@@ -35,6 +43,59 @@ const caseVideos = [
   },
 ];
 
+const iso27001CaseVideos: CaseVideo[] = [
+  {
+    href: "https://youtu.be/oEjkFi8Pm6Y",
+    thumbnail: "/images/iso-27001-case-youtube-1.png",
+    alt: "ISO27001 인증사례: 1. IT 서비스기업 ISO27001 구축 성공사례",
+    ariaLabel: "IT 서비스기업 ISO27001 구축 성공사례 동영상 보기",
+  },
+  {
+    href: "https://youtu.be/c9Yh8srJZog",
+    thumbnail: "/images/iso-27001-case-youtube-2.png",
+    alt: "ISO27001 인증사례: 2. SaaS · 클라우드 서비스 기업 ISO27001 구축 성공사례",
+    ariaLabel: "SaaS 클라우드 서비스 기업 ISO27001 구축 성공사례 동영상 보기",
+  },
+  {
+    href: "https://youtu.be/uBLfKj2ObGI",
+    thumbnail: "/images/iso-27001-case-youtube-3.png",
+    alt: "ISO27001 인증사례: 3. 정보시스템 운영기업의 ISO27001 구축 성공사례",
+    ariaLabel: "정보시스템 운영기업 ISO27001 구축 성공사례 동영상 보기",
+  },
+];
+
+function CaseVideoGrid({ videos }: { videos: CaseVideo[] }) {
+  return (
+    <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {videos.map((video) => (
+        <a
+          key={video.href}
+          href={video.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group block overflow-hidden rounded-2xl ring-1 ring-black/5 transition hover:shadow-cardHover"
+          aria-label={video.ariaLabel}
+        >
+          <div className="relative aspect-video w-full">
+            <Image
+              src={video.thumbnail}
+              alt={video.alt}
+              fill
+              className="object-cover transition duration-300 group-hover:scale-[1.02]"
+              sizes="(max-width: 1024px) 50vw, 33vw"
+            />
+            <span className="absolute inset-0 flex items-center justify-center bg-ink-primary/0 transition group-hover:bg-ink-primary/10">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/90 text-white shadow-card transition group-hover:scale-110">
+                ▶
+              </span>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  );
+}
+
 export const metadata: Metadata = {
   title,
   description,
@@ -58,36 +119,26 @@ export default function CasesPage() {
               </Link>
             </div>
             <p className="max-w-3xl text-sm leading-relaxed text-ink-secondary">
-              제조·IT·서비스·유통 등 다양한 업종의 ISO 9001 인증 구축 사례와 실제 심사 과정을 영상으로
-              확인해 보세요.
+              제조·IT·서비스·유통 등 다양한 업종의 ISO 9001·27001 인증 구축 사례와 실제 심사 과정을
+              영상으로 확인해 보세요.
             </p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {caseVideos.map((video) => (
-                <a
-                  key={video.href}
-                  href={video.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block overflow-hidden rounded-2xl ring-1 ring-black/5 transition hover:shadow-cardHover"
-                  aria-label={video.ariaLabel}
-                >
-                  <div className="relative aspect-video w-full">
-                    <Image
-                      src={video.thumbnail}
-                      alt={video.alt}
-                      fill
-                      className="object-cover transition duration-300 group-hover:scale-[1.02]"
-                      sizes="(max-width: 1024px) 50vw, 33vw"
-                    />
-                    <span className="absolute inset-0 flex items-center justify-center bg-ink-primary/0 transition group-hover:bg-ink-primary/10">
-                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/90 text-white shadow-card transition group-hover:scale-110">
-                        ▶
-                      </span>
-                    </span>
-                  </div>
-                </a>
-              ))}
+
+            <div className="mt-8">
+              <h2 className="text-lg font-semibold text-ink-primary">ISO 9001 인증 사례</h2>
+              <p className="mt-2 text-sm text-ink-secondary">
+                도소매·서비스·제조업 구축 성공사례와 실제 심사 과정 재현 영상입니다.
+              </p>
+              <CaseVideoGrid videos={iso9001CaseVideos} />
             </div>
+
+            <div className="mt-10">
+              <h2 className="text-lg font-semibold text-ink-primary">ISO 27001 인증 사례</h2>
+              <p className="mt-2 text-sm text-ink-secondary">
+                IT 서비스·SaaS/클라우드·정보시스템 운영 기업의 구축 성공사례입니다.
+              </p>
+              <CaseVideoGrid videos={iso27001CaseVideos} />
+            </div>
+
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/contact"
@@ -100,6 +151,12 @@ export default function CasesPage() {
                 className="rounded-full border border-ink-primary/15 bg-white px-6 py-3 text-sm font-semibold text-ink-primary transition hover:shadow-card"
               >
                 ISO 9001 안내 보기
+              </Link>
+              <Link
+                href="/services/iso-27001"
+                className="rounded-full border border-ink-primary/15 bg-white px-6 py-3 text-sm font-semibold text-ink-primary transition hover:shadow-card"
+              >
+                ISO 27001 안내 보기
               </Link>
             </div>
           </section>
