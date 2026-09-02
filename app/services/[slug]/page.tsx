@@ -49,6 +49,27 @@ const iso27001Videos = [
   },
 ];
 
+const iso45001Videos = [
+  {
+    href: "https://youtu.be/1pUfICGz5-I",
+    thumbnail: "/images/iso-45001-youtube-1.png",
+    alt: "ISO45001: 안전보건경영시스템의 모든것 1. 안전보건경영시스템 개요 및 인증 절차",
+    ariaLabel: "안전보건경영시스템 개요 및 인증 절차 동영상 보기",
+  },
+  {
+    href: "https://youtu.be/4CBiNSgTnH8",
+    thumbnail: "/images/iso-45001-youtube-2.png",
+    alt: "ISO45001: 안전보건경영시스템의 모든것 2. 안전보건경영시스템 요구사항 완전분석",
+    ariaLabel: "안전보건경영시스템 요구사항 완전분석 동영상 보기",
+  },
+  {
+    href: "https://youtu.be/PxAUzc1gykE",
+    thumbnail: "/images/iso-45001-youtube-3.png",
+    alt: "ISO45001: 안전보건경영시스템의 모든것 3. ISO45001 문서체계 이해와 실전 문서작성",
+    ariaLabel: "ISO45001 문서체계 이해와 실전 문서작성 동영상 보기",
+  },
+];
+
 type Props = {
   params: { slug: string };
 };
@@ -528,6 +549,40 @@ export default function IsoServiceDetailPage({ params }: Props) {
                     <li>- 건설/제조 등 고위험 산업 기업</li>
                     <li>- ESG 및 안전경영을 강화하려는 기업</li>
                   </ul>
+                </section>
+
+                <section>
+                  <h2 className="text-lg font-semibold text-ink-primary">ISO 45001 학습 동영상</h2>
+                  <p className="mt-2 text-sm text-ink-secondary">
+                    ISO 45001의 핵심 내용을 영상으로 빠르게 이해해 보세요.
+                  </p>
+                  <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {iso45001Videos.map((video) => (
+                      <a
+                        key={video.href}
+                        href={video.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group block overflow-hidden rounded-2xl ring-1 ring-black/5 transition hover:shadow-cardHover"
+                        aria-label={video.ariaLabel}
+                      >
+                        <div className="relative aspect-video w-full">
+                          <Image
+                            src={video.thumbnail}
+                            alt={video.alt}
+                            fill
+                            className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                            sizes="(max-width: 1024px) 50vw, 33vw"
+                          />
+                          <span className="absolute inset-0 flex items-center justify-center bg-ink-primary/0 transition group-hover:bg-ink-primary/10">
+                            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/90 text-white shadow-card transition group-hover:scale-110">
+                              ▶
+                            </span>
+                          </span>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
                 </section>
               </div>
             ) : isIso27001 ? (
